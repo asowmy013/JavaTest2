@@ -1,6 +1,9 @@
 import CollectionsProgram.ArrayListExample;
 import CollectionsProgram.HashMapExample;
 import CollectionsProgram.HashSetExample;
+import ProgramForPractice.leapYear;
+import ProgramForPractice.program2;
+import ProgramForPractice.reverseString;
 import StreamandLambda.StreamLambda;
 import examples1.NewChild;
 
@@ -37,17 +40,11 @@ public class MyClass {
 
     public static void main(String[] args) {
 
-        StreamLambda obj =  new StreamLambda();
-       obj.StreamExample();
+        PyramidClass obj =  new PyramidClass();
+       obj.Pyramid(3,3);
+      // obj.LeapYear2(2024);
 
 
-
-
-        System.out.println("Hello");
-//println will provide new line
-        System.out.println("This is the new changes");
-
-        System.out.println("a");
 
 
     }
