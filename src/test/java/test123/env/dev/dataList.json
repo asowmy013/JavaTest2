@@ -1,0 +1,28 @@
+{
+  "dataList": [
+    {
+      "id": "USER_WITH_VALID_UUID_UUIDTYPE",
+      "uuid": "0001002747",
+      "uuidtype": "local"
+    },
+    {
+      "id": "USER_WITH_UUID_AND_UUIDTYPE_INVALID",
+      "uuid": "000100274AB",
+      "uuidtype": "ABC"
+    },
+    {
+      "id": "USER_WITH_UUID_UUIDTYPE_NOT_FOUND",
+      "uuid": "0001002749",
+      "uuidtype": "global"
+    },
+    {
+      "id": "USER_WITH_VALID_UUID_AND_VALID_UUIDTYPE",
+      "productNumber": "331405407",
+      "role": "S",
+      "state": "AC",
+      "type": "300",
+      "uuid": "0001002747",
+      "uuidtype": "local"
+    }
+  ]
+}

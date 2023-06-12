@@ -1,0 +1,16 @@
+{
+  "address": "VIA GARIBALD ",
+  "addressTypeCode": "$addressTypeCode",
+  "aditionalDescription": "Street",
+  "buildingDescription": "201",
+  "city": "MILANO",
+  "countryUicCode": "IT",
+  "nationalityCode": "IT",
+  "normalizedAddress": "MI",
+  "normalizedCode": "FN",
+  "notes": "string",
+  "postalCode": "20121",
+  "provinceCode": "MI",
+  "streetTypeCode": "string",
+  "unit": "string"
+}

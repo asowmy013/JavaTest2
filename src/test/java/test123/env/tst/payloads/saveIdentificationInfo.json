@@ -1,0 +1,11 @@
+{
+  "countryOfIssue": "IT",
+  "dateOfIssue": "$dateOfIssue",
+  "docNumberType": "$docNumberType",
+  "expiryDate": "2033-12-12T21:59:59.999Z",
+  "idDocNumber": "$idDocNumber",
+  "identificationDate": "$identificationDate",
+  "identificationFlag": "$identificationFlag",
+  "identificationMethod": "$identificationMethod",
+  "placeOfIssue": "MILANO"
+}

@@ -1,0 +1,34 @@
+# Java exclusions
+*.class
+*.war
+*.ear
+
+# Eclipse exclusions
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.classpath
+.project
+
+# Maven exclusions
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+output/
+
+# Sonarlint excusions
+*.sonarlin*

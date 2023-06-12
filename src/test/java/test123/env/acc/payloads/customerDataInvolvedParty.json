@@ -1,0 +1,48 @@
+{
+  "individual": {
+    "channelOfEntry": "DGTL_CHAN",
+    "cityOfBirth": "MILAN",
+    "countryOfBirth": "IT",
+    "countryOfResidence": "IT",
+    "dataSource": "FOS_IT",
+    "dateOfBirth": "1970-12-27",
+    "dateOfBirthQualityIndicator": "COMPL",
+    "effectiveDate": "2019-11-05T07:57:03.460Z",
+    "endDate": "2030-11-05T07:57:03.460Z",
+    "financialLegalStatusType": "IN_ADMIN",
+    "employmentStatusType": "STDNT",
+    "gender": "M",
+    "individualLifeCycleStatusType": "LIVING_IDV",
+    "legalCompetencyStatusType": "LGL_CMP_ADLT",
+    "logicalDataDomain": "ING_IT",
+    "maritalStatus": "UNMR",
+    "preferredLanguage": "it",
+    "individualName": {
+      "dataSource": "FOS_IT",
+      "effectiveDate": "2019-11-05T07:57:03.460Z",
+      "firstName1": "AB",
+      "firstName2": "BC",
+      "firstName3": "CD",
+      "givenName": "$givenName",
+      "lastName": "$lastName",
+      "salutation": "MR",
+      "lastNamePrefix": "A008",
+      "nameInitials": "OM",
+      "nameSuffix": "MSc",
+      "nickName": "Jimmy",
+      "birthLastName": "Dwight",
+      "secondLastName": "Jackson",
+      "partnerLastName": "Furnish",
+      "partnerLastNamePrefix": "A004",
+      "title1": "BURGGRAAF",
+      "title2": "IR",
+      "title3": "JHR"
+    }
+  },
+  "involvedPartyExternalIdentifiers": [
+    {
+      "involvedPartyExternalIdentifierType": "CD_FISCALE_IT",
+      "involvedPartyExternalIdentifierValue": "$taxCode"
+    }
+  ]
+}

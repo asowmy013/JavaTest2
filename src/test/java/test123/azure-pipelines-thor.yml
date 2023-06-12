@@ -1,0 +1,240 @@
+#parameters:
+#  - name: pipelineId
+#    type: number
+#    default: 21921
+#  - name: component
+#    type: string
+#    default: 'ITAPartyAgreementsAPI'
+#  - name: tags
+#    default: '~@ignore'
+#
+#trigger:
+#  # Pipeline will be automatically triggered from change on the branch included here
+#  branches:
+#    include:
+#      - none
+#stages:
+#  - stage: DownloadArtifacts
+#    jobs:
+#      - job: TestExecution
+#        pool:
+#          name: 'CDaaSLinux'
+#        steps:
+#          - task: DownloadPipelineArtifact@2
+#            displayName: 'download_artifacts_pipline'
+#            inputs:
+#              source: 'specific'
+#              project: 'IngOne'
+#              runId: ${{ parameters.pipelineId }}
+#              pipeline:  ${{ parameters.pipelineId }}
+#              path: '$(System.DefaultWorkingDirectory)'
+#              artifact: 'ThorBinaries'
+#
+#          - task: CopyFiles@2
+#            displayName: 'Copy Thor Resources'
+#            inputs:
+#              SourceFolder: '$(System.DefaultWorkingDirectory)/test/thor/it-thor-impl'
+#              TargetFolder: '$(System.ArtifactsDirectory)'
+#
+#          - task: CopyFiles@2
+#            displayName: 'Copy Thor Binaries'
+#            inputs:
+#              contents: 'it-thor-impl-jar-with-dependencies.jar'
+#              SourceFolder: '$(System.DefaultWorkingDirectory)'
+#              TargetFolder: '$(System.ArtifactsDirectory)'
+#
+#          - task: PublishBuildArtifacts@1
+#            inputs:
+#              PathtoPublish: '$(System.ArtifactsDirectory)'
+#              ArtifactName: 'drop'
+#              publishLocation: 'Container'
+#
+#  - stage: RunTest_DCR
+#    dependsOn: DownloadArtifacts
+#    jobs:
+#      - job: RunTests_DCR
+#        pool:
+#          name: 'CDaaSLinux'
+#        steps:
+#          - task: DownloadBuildArtifacts@0
+#            displayName: 'download'
+#            inputs:
+#              buildType: 'current'
+#              downloadType: 'specific'
+#              downloadPath: '$(System.ArtifactsDirectory)'
+#
+#          - task: Bash@3
+#            displayName: 'Run Integration Tests'
+#            inputs:
+#              targetType: 'inline'
+#              script: |
+#                # Write your commands here
+#                sudo chmod -R 777 .
+#                cd $(System.ArtifactsDirectory)/drop/
+#                ls -lrt
+#                java -DSECURITY_PROPERTIES_DIRECTORY=./config/tst/ -Ddatacenter=DCR -jar ./it-thor-impl-jar-with-dependencies.jar --plugin json:output/result.json --tags ${{ parameters.tags }} ./feature/ || true
+#
+#          - task: PublishBuildArtifacts@1
+#            inputs:
+#              PathtoPublish: '$(System.ArtifactsDirectory)/drop/output'
+#              ArtifactName: 'dcr_results'
+#              publishLocation: 'Container'
+#
+#  - stage: RunTest_WPR
+#    dependsOn: DownloadArtifacts
+#    jobs:
+#      - job: RunTests_WPR
+#        pool:
+#          name: 'CDaaSLinux'
+#        steps:
+#          - task: DownloadBuildArtifacts@0
+#            displayName: 'download'
+#            inputs:
+#              buildType: 'current'
+#              downloadType: 'specific'
+#              downloadPath: '$(System.ArtifactsDirectory)/'
+#
+#          - task: Bash@3
+#            displayName: 'Run Integration Tests'
+#            inputs:
+#              targetType: 'inline'
+#              script: |
+#                # Write your commands here
+#                sudo chmod -R 777 .
+#                cd $(System.ArtifactsDirectory)/drop/
+#                ls -lrt
+#                java -DSECURITY_PROPERTIES_DIRECTORY=./config/tst/ -Ddatacenter=WPR -jar ./it-thor-impl-jar-with-dependencies.jar --plugin json:output/result.json  --tags ${{ parameters.tags }} ./feature/ || true
+#
+#          - task: PublishBuildArtifacts@1
+#            inputs:
+#              PathtoPublish: '$(System.ArtifactsDirectory)/drop/output/'
+#              ArtifactName: 'wpr_results'
+#              publishLocation: 'Container'
+#
+#  - stage: CucumberReport
+#    dependsOn:
+#      - RunTest_DCR
+#      - RunTest_WPR
+#    jobs:
+#      - job: GenerateReport
+#        pool:
+#          vmImage: 'ubuntu-20.04'
+#
+#        steps:
+#          - task: DownloadBuildArtifacts@0
+#            continueOnError: true
+#            displayName: 'download'
+#            inputs:
+#              buildType: 'current'
+#              downloadType: 'specific'
+#              downloadPath: '$(System.ArtifactsDirectory)'
+#
+#          - task: PublishCucumberReport@1
+#            continueOnError: true
+#            displayName: 'Generate_Cucumber_Report_WPR'
+#            inputs:
+#              jsonDir: '$(System.ArtifactsDirectory)/wpr_results/'
+#              outputPath: '$(System.ArtifactsDirectory)/wpr_results'
+#              theme: 'bootstrap'
+#              reportSuiteAsScenarios: true
+#              name: '${{ parameters.component }} - Test Report - WPR'
+#
+#          - task: PublishBuildArtifacts@1
+#            continueOnError: true
+#            inputs:
+#              PathtoPublish: '$(System.ArtifactsDirectory)/wpr_results'
+#              ArtifactName: 'wpr_html'
+#              publishLocation: 'Container'
+#
+#          - task: PublishCucumberReport@1
+#            continueOnError: true
+#            displayName: 'Generate_Cucumber_Report_DCR'
+#            inputs:
+#              jsonDir: '$(System.ArtifactsDirectory)/dcr_results/'
+#              outputPath: '$(System.ArtifactsDirectory)/dcr_results'
+#              theme: 'bootstrap'
+#              reportSuiteAsScenarios: true
+#              name: '${{ parameters.component }} - Test Report - DCR'
+#
+#          - task: PublishBuildArtifacts@1
+#            continueOnError: true
+#            inputs:
+#              PathtoPublish: '$(System.ArtifactsDirectory)/dcr_results'
+#              ArtifactName: 'dcr_html'
+#              publishLocation: 'Container'
+#
+#
+#  - stage: SendEmail
+#    dependsOn: CucumberReport
+#    jobs:
+#      - job: SendEmailReport
+#        pool:
+#          name: 'CDaaSLinux'
+#        steps:
+#          - task: DownloadBuildArtifacts@0
+#            displayName: 'download html reports'
+#            inputs:
+#              buildType: 'current'
+#              downloadType: 'specific'
+#              downloadPath: '$(System.ArtifactsDirectory)'
+#
+#          - task: PythonScript@0
+#            displayName: "[NOTIFY] Send email"
+#            inputs:
+#              scriptSource: 'inline'
+#              script: |
+#                from email.mime.text import MIMEText
+#                from email.mime.base import MIMEBase
+#                from email.mime.multipart import MIMEMultipart
+#                from email import encoders
+#                import smtplib, os, glob
+#                import sys, json
+#                import datetime
+#
+#                _DEFAULT_SERVER = 'smtp-ip.wps.ing.net'
+#                _DEFAULT_PORT = 25
+#                _DEFAULT_SENDER = 'ML-Integration-Testing-PING@ing.com'
+#                _DEFAULT_RECEIVER = 'vishwanatha.katgeri.shetty.ext@ing.com'
+#                dateTime = datetime.datetime.now()
+#                mailRecipients = ['fabio.volpe@ing.com','ml-it-techpirates@ing.com','vishwanatha.katgeri.shetty.ext@ing.com']
+#                my_email = MIMEMultipart()
+#                my_email["From"] = _DEFAULT_SENDER
+#                my_email["To"] = ', '.join(mailRecipients)
+#                my_email["Subject"] = 'Automated Test Report - ${{ parameters.component }} -' + str(dateTime)
+#                try:
+#                  part1 = open("$(System.ArtifactsDirectory)/dcr_results/status.txt", "r").read()
+#                except:
+#                  part1 = "DCR report is not available"
+#                try:
+#                  part2 = open("$(System.ArtifactsDirectory)/wpr_results/status.txt", "r").read()
+#                except:
+#                  part2 = "WPR report is not available"
+#                content = "<html><head></head><body><p>Hello!<br>Attached the mail with the summary of ${{ parameters.component }} Integration test run today.</br><br><b>DCR Status:</b></br><br>" + part1 + "</br><br><b>WPR Status:</b></br><br>" + part2 + "</br><br><b>Regards,Test Automation Team.</b></br></p></body></html>"
+#                my_email.attach(MIMEText(content, 'html'))
+#
+#                try:
+#                  dcr = MIMEBase('application', "octet-stream")
+#                  dcr.set_payload(open("$(System.ArtifactsDirectory)/dcr_html/cucumber.html", "rb").read())
+#                  encoders.encode_base64(dcr)
+#                  dcr.add_header('Content-Disposition', 'attachment; filename="${{ parameters.component }}-dcr.html"')
+#                  my_email.attach(dcr)
+#                except Exception as e:
+#                  print(e)
+#
+#
+#                try:
+#                  wpr = MIMEBase('application', "octet-stream")
+#                  wpr.set_payload(open("$(System.ArtifactsDirectory)/wpr_html/cucumber.html", "rb").read())
+#                  encoders.encode_base64(wpr)
+#                  wpr.add_header('Content-Disposition', 'attachment; filename="${{ parameters.component }}-wpr.html"')
+#                  my_email.attach(wpr)
+#                except Exception as e:
+#                  print(e)
+#
+#                #my_email["CC"] = ''
+#
+#                smtpObj = smtplib.SMTP(_DEFAULT_SERVER, _DEFAULT_PORT)
+#                print("Sending email to all stake-holders")
+#                smtpObj.sendmail(_DEFAULT_SENDER, mailRecipients, my_email.as_string())
+#
+#                print("Successfully sent email")

@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "USER_WITH_VALID_LOCAL_UUID",
+      "uuid": "0001002748",
+      "uuidtype": "local",
+      "provinceCode": "L1",
+      "streetTypeCode": "V1",
+      "nationalityCode": "IT",
+      "addressTypeCode": 1,
+      "normalizedCode":"MI"
+
+    },{
+      "id": "USER_WITH_INVALID_LOCAL_UUID",
+      "uuid": "9999999999",
+      "localUuid": "9999999999",
+      "cif": "0000000000",
+      "uuidtype": "local"
+    },
+    {
+      "id": "USER_WITH_VALID_GLOBAL_UUID",
+      "uuid": "0fea7cfc-5185-48ce-8337-5df15366aba6",
+      "uuidtype": "global",
+      "provinceCode": "L1",
+      "streetTypeCode": "V1",
+      "nationalityCode": "IT",
+      "addressTypeCode": 1,
+      "normalizedCode":"MI"
+    },
+    {
+      "id": "USER_WITH_INVALID_GLOBAL_UUID",
+      "uuid": "4ff6b600-0482-4593-a705-ad7a04f71776",
+      "uuidtype": "global"
+    },
+    {
+      "id": "v",
+      "uuid": "000100274AB",
+      "uuidtype": "ABC"
+    },
+    {
+      "id": "USER_WITH_UUID_UUIDTYPE_NOT_FOUND",
+      "uuid": "0001002749",
+      "uuidtype": "global"
+    },
+    {
+      "id": "USER_WITH_VALID_UUID_AND_VALID_UUIDTYPE",
+      "productNumber": "331405407",
+      "role": "S",
+      "state": "AC",
+      "type": "300",
+      "uuid": "0001002747",
+      "uuidtype": "local"
+    },
+    {
+      "id": "USER_WITH_VALID_UUID_UUIDTYPE",
+      "uuid": "0001002747",
+      "uuidtype": "local"
+    },
+    {
+      "id": "USER_WITH_UUID_AND_UUIDTYPE_INVALID",
+      "uuid": "00010027",
+      "uuidtype": "local"
+    },
+    {
+      "id": "USER_WITH_INVALID_UUID_TYPE",
+      "productNumber": "331405407",
+      "role": "S",
+      "state": "AC",
+      "type": "300",
+      "uuid": "00",
+      "uuidtype": "local"
+    },
+    {
+      "id": "USER_WITH_VALID_TAX_CODE",
+      "taxCode": "BSNDVD98L08F205Z",
+      "firstname": "DAVID",
+      "lastname": "ABOUSENA"
+    },
+    {
+      "id": "USER_WITH_INVALID_FIRST_NAME_LAST_NAME",
+      "taxCode": "BSNDVD87E01A944T",
+      "firstname": "Auto",
+      "lastname": "Tester"
+    },
+    {
+      "id": "USER_WITH_TAX_CODE_NAME_MISMATCH",
+      "taxCode": "VSNJLO48R08F158S",
+      "firstname": "DAVID",
+      "lastname": "ABOUSENA"
+    },  {
+      "id": "USER_WITH_IN_CORRECT_TAX_CODE",
+      "taxCode": "BSNDVD87E01A944TARED",
+      "firstname": "DAVID",
+      "lastname": "ABOUSENA"
+    },
+    {
+      "id": "TAX_NUMBER_EXISTING_CUSTOMER",
+      "taxCode": "SMTSNC91E05G478H"
+    }, {
+      "id": "TAX_NUMBER_PROSPECT",
+      "taxCode": "SHTVSH87E01A944T"
+    },
+    {
+      "id": "USER_EXIST_IN_LOCAL_DB",
+      "uuid": "b9b191c7-a9ee-448a-9c05-6d42dc5ebf7b",
+      "cif": "0001002747"
+    },
+    {
+      "id": "USER_NOT_IN_LOCAL_DB",
+      "uuid": "90e0126c-bbd0-474a-96fe-8804fa412a24",
+      "cif": "0009812326"
+    },
+    {
+      "id": "USER_NOT_IN_GLOBAL_DB",
+      "uuid": "1338c7d9-979b-4ff5-81b2-4b415ebe64e1"
+    },
+    {
+      "id": "USER_WITH_INCORRECT_LOCAL_UUID",
+      "uuid": "0001000"
+    },
+    {
+      "id": "USER_WITH_7DIGIT_LOCAL_UUID",
+      "uuid": "1002748",
+      "localUuid": "1002748"
+    },
+    {
+      "id": "USER_WITH_FISCAL_ADDRESS",
+      "localUuid": "0001002747",
+      "uuid": "b9b191c7-a9ee-448a-9c05-6d42dc5ebf7b"
+    }
+  ]
+}

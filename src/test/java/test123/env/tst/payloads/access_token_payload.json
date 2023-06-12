@@ -1,0 +1,32 @@
+[{
+  "access_token": {
+    "client_id": "3666dac9-eaa0-46b5-b605-b0dec6c03b16",
+    "customer_service_organisation": "CSO_IT",
+    "executor": {
+      "level_of_assurance": 1,
+      "means": [
+        {
+          "id": "6f380cef-14b6-4a75-b7ac-324b073846ff",
+          "type": "it-login"
+        }
+      ],
+      "person": "a197b51e-c5e4-11ec-9d64-0242ac120002",
+      "profile": "$profile",
+      "type": "customer"
+    },
+    "not_before": "$not_before",
+    "time_to_live": "$time_to_live",
+    "pinning_type": "cookie",
+    "pinning_value": "secure_random_value",
+    "scopes": [
+      "granting"
+    ],
+    "trace_enabled": false
+  },
+  "refresh_token": {
+    "time_to_live": 600000
+  },
+  "token_identifier": "string",
+  "unencrypted": true
+}
+]

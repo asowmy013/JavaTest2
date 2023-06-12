@@ -1,0 +1,6 @@
+---
+- hosts:
+    - integrationtestserver
+  tasks:
+    - include_role:
+        name: ita-integration-test

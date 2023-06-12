@@ -1,0 +1,13 @@
+{
+  "involvedPartyExternalIdentifiers": [
+    {
+      "involvedPartyExternalIdentifierType": "CD_FISCALE_IT",
+      "involvedPartyExternalIdentifierValue": "SHTVSH70T27A944Y",
+      "involvedPartyExternalIdentifierStatusType": "ISSUD",
+      "countryOfIssue": "IT",
+      "effectiveDate": "2001-04-03T21:32:57.426Z",
+      "lastUpdateUser": "1002748",
+      "lastUpdateDate": "2019-11-05T07:57:03.731Z"
+    }
+  ]
+}

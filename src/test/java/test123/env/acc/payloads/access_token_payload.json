@@ -1,0 +1,34 @@
+[
+  {
+    "access_token": {
+      "issuer": "api.ebanking.at.ing.be",
+      "client_id": "7615076a-1d0d-4023-8dc1-e7643345d545",
+      "customer_service_organisation": "CSO_IT",
+      "executor": {
+        "level_of_assurance": 5,
+        "means": [
+          {
+            "id": "meansId",
+            "type": "meansType"
+          }
+        ],
+        "person": "7615076a-1d0d-4023-8dc1-e7643345d545",
+        "profile": "$profile",
+        "type": "customer"
+      },
+      "not_before": "$not_before",
+      "time_to_live": "$time_to_live",
+      "pinning_type": "cookie",
+      "pinning_value": "secure_random_value",
+      "scopes": [
+        "personal_data"
+      ],
+      "trace_enabled": true
+    },
+    "refresh_token": {
+      "time_to_live": 600000
+    },
+    "token_identifier": "string",
+    "unencrypted": true
+  }
+]

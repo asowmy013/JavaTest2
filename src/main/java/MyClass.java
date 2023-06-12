@@ -4,6 +4,7 @@ import CollectionsProgram.HashSetExample;
 import ProgramForPractice.leapYear;
 import ProgramForPractice.program2;
 import ProgramForPractice.reverseString;
+import StreamandLambda.ReadDataFromExcelfile;
 import StreamandLambda.StreamLambda;
 import examples1.NewChild;
 
@@ -40,8 +41,8 @@ public class MyClass {
 
     public static void main(String[] args) {
 
-        PyramidClass obj =  new PyramidClass();
-       obj.Pyramid(3,3);
+        ReadDataFromExcelfile obj =  new ReadDataFromExcelfile();
+        obj.TestData();
       // obj.LeapYear2(2024);
 
 

@@ -1,0 +1,17 @@
+{
+  "addressTypeCode": "$addressTypeCode",
+  "streetTypeCode": "V1",
+  "unit": "581/A",
+  "city": "MILANO",
+  "provinceCode": "MI",
+  "postalCode": "20121",
+  "nationalityCode": "IT",
+  "notes": "notes",
+  "normalizedCode": "$normalizedCode",
+  "normalizedAddress": "MI",
+  "buildingDescription": "201",
+  "countryUicCode": "086",
+  "additionalDescription": "$additionalDescription",
+  "uuid": "$uuid",
+  "uuidtype": "global"
+}
